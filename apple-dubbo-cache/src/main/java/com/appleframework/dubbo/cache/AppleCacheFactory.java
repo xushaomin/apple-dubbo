@@ -3,6 +3,7 @@ package com.appleframework.dubbo.cache;
 import com.alibaba.dubbo.cache.Cache;
 import com.alibaba.dubbo.cache.CacheFactory;
 import com.alibaba.dubbo.common.URL;
+import com.appleframework.dubbo.cache.utils.Constants;
 import com.appleframework.dubbo.cache.utils.DubboUtil;
 import com.appleframework.dubbo.cache.utils.MD5Util;
 
@@ -36,11 +37,12 @@ public class AppleCacheFactory implements CacheFactory {
 
 	public static String getCacheKey(URL url) {
 		String cacheKey = null;
-		if (url.hasParameter(url.getParameter("method") + "." + "paramTypes")) {
-			String paramTypesStr = url.getParameter(DubboUtil.getMethodParamKey(url, "paramTypes"));
-			cacheKey = url.getPath() + "." + url.getParameter("method") + "." + MD5Util.string2MD5(paramTypesStr);
+		String methodName = url.getParameter("method");
+		if (url.hasParameter(methodName + "." + Constants.PARAMTYPES)) {
+			String paramTypesStr = url.getParameter(DubboUtil.getMethodParamKey(url, Constants.PARAMTYPES));
+			cacheKey = url.getPath() + "." + methodName + "." + MD5Util.string2MD5(paramTypesStr);
 		} else {
-			cacheKey = url.getPath() + "." + url.getParameter("method");
+			cacheKey = url.getPath() + "." + methodName;
 		}
 		return cacheKey;
 	}
