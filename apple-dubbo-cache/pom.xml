@@ -6,10 +6,10 @@
 	<parent>
 		<groupId>com.appleframework.dubbo</groupId>
 		<artifactId>apple-dubbo</artifactId>
-		<version>0.0.1</version>
+		<version>0.0.1.RELEASE</version>
 	</parent>
 	<artifactId>apple-dubbo-cache</artifactId>
-	<name>apple-dubbo-cache-core</name>
+	<name>apple-dubbo-cache</name>
 	<url>http://mvnrepo.appleframework.com:8081/nexus</url>
 	<dependencies>
 		<dependency>
