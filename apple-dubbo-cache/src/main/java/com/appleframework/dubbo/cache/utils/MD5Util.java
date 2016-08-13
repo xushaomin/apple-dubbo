@@ -7,7 +7,7 @@ import java.security.MessageDigest;
 public class MD5Util {
 
     /***
-     * MD5¼ÓÂë Éú³É32Î»md5Âë
+     * MD5åŠ ç  ç”Ÿæˆ32ä½md5ç 
      */
     public static String string2MD5(String inStr){
         MessageDigest md5 = null;
@@ -36,7 +36,7 @@ public class MD5Util {
     }
 
     /**
-     * ¼ÓÃÜ½âÃÜËã·¨ Ö´ĞĞÒ»´Î¼ÓÃÜ£¬Á½´Î½âÃÜ
+     * åŠ å¯†è§£å¯†ç®—æ³• æ‰§è¡Œä¸€æ¬¡åŠ å¯†ï¼Œä¸¤æ¬¡è§£å¯†
      */
     public static String convertMD5(String inStr){
 
@@ -53,13 +53,13 @@ public class MD5Util {
         return string2MD5(inStr).substring(0,16);
     }
 
-    // ²âÊÔÖ÷º¯Êı
+    // æµ‹è¯•ä¸»å‡½æ•°
     public static void main(String args[]) {
         String s = new String("tangfuqiangaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasfdasfasfeasg");
         System.out.println(shortMD5(s));
-        System.out.println("Ô­Ê¼£º" + s);
-        System.out.println("MD5ºó£º" + string2MD5(s));
-        System.out.println("¼ÓÃÜµÄ£º" + convertMD5(s));
-        System.out.println("½âÃÜµÄ£º" + convertMD5(convertMD5(s)));
+        System.out.println("åŸå§‹ï¼š" + s);
+        System.out.println("MD5åï¼š" + string2MD5(s));
+        System.out.println("åŠ å¯†çš„ï¼š" + convertMD5(s));
+        System.out.println("è§£å¯†çš„ï¼š" + convertMD5(convertMD5(s)));
     }
 }

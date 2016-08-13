@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 /**
- * ¹¤¾ßÀà - Spring
+ * å·¥å…·ç±» - Spring
  */
 
 public class SpringUtility implements ApplicationContextAware, DisposableBean {
@@ -22,7 +22,7 @@ public class SpringUtility implements ApplicationContextAware, DisposableBean {
 	}
 
 	/**
-	 * »ñÈ¡applicationContext
+	 * è·å–applicationContext
 	 * 
 	 * @return applicationContext
 	 */
@@ -31,12 +31,12 @@ public class SpringUtility implements ApplicationContextAware, DisposableBean {
 	}
 
 	/**
-	 * ¸ù¾İBeanÃû³Æ»ñÈ¡ÊµÀı
+	 * æ ¹æ®Beanåç§°è·å–å®ä¾‹
 	 * 
 	 * @param name
-	 *            Bean×¢²áÃû³Æ
+	 *            Beanæ³¨å†Œåç§°
 	 * 
-	 * @return beanÊµÀı
+	 * @return beanå®ä¾‹
 	 * 
 	 * @throws BeansException
 	 */

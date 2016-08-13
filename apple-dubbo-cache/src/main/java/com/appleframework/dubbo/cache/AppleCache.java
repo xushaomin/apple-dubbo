@@ -30,7 +30,6 @@ public class AppleCache implements Cache {
 	}
 
 	public void put(Object param, Object value) {
-		// 给予缓存开关
 		if (Constants.CACHE_ENABLE) {
 			try {
 				String key = getCacheKey(param);
@@ -43,7 +42,7 @@ public class AppleCache implements Cache {
 					getDubboCacheManager().set(key, value, timeout);
 				}
 			} catch (Exception e) {
-				logger.error("添加缓存数据失败！", e);
+				logger.error(e);
 			}
 		}
 	}
@@ -57,7 +56,7 @@ public class AppleCache implements Cache {
 				}
 				return getDubboCacheManager().get(key);
 			} catch (Exception e) {
-				logger.error("获取缓存数据失败！", e);
+				logger.error(e);
 			}
 		}
 		return null;

@@ -28,7 +28,7 @@ public class AppleCacheFactory implements CacheFactory {
 			try {
 				cacheUrlMap.put(cacheKey, new AppleCache(url, cacheKey));
 			} catch (Exception e) {
-				logger.error("»º´æ³õÊ¼»¯Ê§°Ü! url=" + url, e);
+				logger.error("ç¼“å­˜åˆå§‹åŒ–å¤±è´¥! url=" + url, e);
 			}
 		}
 		return cacheUrlMap.get(cacheKey);
