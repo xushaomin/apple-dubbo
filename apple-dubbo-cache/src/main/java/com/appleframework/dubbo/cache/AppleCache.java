@@ -10,8 +10,6 @@ import com.appleframework.dubbo.cache.utils.Constants;
 import com.appleframework.dubbo.cache.utils.DubboUtil;
 
 /**
- * dubbo结果集缓存 key的生成规则 propKey > key > 自动生成key
- * 1.配置中心的key规则优先，获取key为dubbo：reference的propKey 2.key只支持表达式变量替换，规则为: -变量-
  */
 public class AppleCache implements Cache {
 
@@ -32,7 +30,7 @@ public class AppleCache implements Cache {
 	}
 
 	public void put(Object param, Object value) {
-		// 给予缓存开关
+		// ���軺�濪��
 		if (Constants.CACHE_ENABLE) {
 			try {
 				String key = getCacheKey(param);
@@ -45,7 +43,7 @@ public class AppleCache implements Cache {
 					getDubboCacheManager().set(key, value, timeout);
 				}
 			} catch (Exception e) {
-				logger.error("添加缓存数据失败！", e);
+				logger.error("���ӻ�������ʧ�ܣ�", e);
 			}
 		}
 	}
@@ -59,7 +57,7 @@ public class AppleCache implements Cache {
 				}
 				return getDubboCacheManager().get(key);
 			} catch (Exception e) {
-				logger.error("获取缓存数据失败！", e);
+				logger.error("��ȡ��������ʧ�ܣ�", e);
 			}
 		}
 		return null;
