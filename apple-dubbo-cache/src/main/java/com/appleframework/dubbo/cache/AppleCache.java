@@ -8,25 +8,30 @@ import com.appleframework.cache.core.CacheManager;
 import com.appleframework.core.utils.SpringUtility;
 import com.appleframework.dubbo.cache.utils.Constants;
 import com.appleframework.dubbo.cache.utils.DubboUtil;
+import com.appleframework.dubbo.cache.utils.MD5Util;
 
 /**
+ *  * AppleCache
+ * 
+ * @author xusm.cruise
  */
 public class AppleCache implements Cache {
 
 	private static final Logger logger = Logger.getLogger(AppleCache.class);
 
-	private String name;
+	private String baseCacheKey;
 
 	private int timeout = -1;
 
 	private CacheManager dubboCacheManager;
 
-	public AppleCache(URL url, String name) {
-		this.name = name;
+	public AppleCache(URL url) {
+		this.baseCacheKey = getBaseCacheKey(url);
 		this.timeout = url.getParameter(DubboUtil.getMethodParamKey(url, Constants.TIMEOUT), -1);
 		if (timeout == -1) {
 			this.timeout = url.getParameter(Constants.TIMEOUT, -1);
 		}
+		dubboCacheManager = SpringUtility.getApplicationContext().getBean(CacheManager.class);
 	}
 
 	public void put(Object param, Object value) {
@@ -63,18 +68,26 @@ public class AppleCache implements Cache {
 	}
 
 	private String getCacheKey(Object param) {
-		return name + "_" + param.toString();
+		return baseCacheKey + "_" + param.toString();
 	}
 
 	public CacheManager getDubboCacheManager() {
-		if (null == dubboCacheManager) {
-			dubboCacheManager = SpringUtility.getApplicationContext().getBean(CacheManager.class);
-		}
 		return dubboCacheManager;
 	}
 
 	public void setDubboCacheManager(CacheManager dubboCacheManager) {
 		this.dubboCacheManager = dubboCacheManager;
+	}
+	
+	public String getBaseCacheKey(URL url) {
+		String cacheKey = null;
+		if (url.hasParameter(url.getParameter("method") + "." + "paramTypes")) {
+			String paramTypesStr = url.getParameter(DubboUtil.getMethodParamKey(url, "paramTypes"));
+			cacheKey = url.getPath() + "." + url.getParameter("method") + "." + MD5Util.string2MD5(paramTypesStr);
+		} else {
+			cacheKey = url.getPath() + "." + url.getParameter("method");
+		}
+		return cacheKey;
 	}
 
 }

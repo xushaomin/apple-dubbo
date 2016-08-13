@@ -1,49 +1,20 @@
 package com.appleframework.dubbo.cache;
 
 import com.alibaba.dubbo.cache.Cache;
-import com.alibaba.dubbo.cache.CacheFactory;
+import com.alibaba.dubbo.cache.support.AbstractCacheFactory;
 import com.alibaba.dubbo.common.URL;
-import com.appleframework.dubbo.cache.utils.Constants;
-import com.appleframework.dubbo.cache.utils.DubboUtil;
-import com.appleframework.dubbo.cache.utils.MD5Util;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.log4j.Logger;
 
 /**
+ *  * AppleCacheFactory
+ * 
+ * @author xusm.cruise
  */
-public class AppleCacheFactory implements CacheFactory {
+public class AppleCacheFactory extends AbstractCacheFactory {
 
-	private static final Logger logger = Logger.getLogger(AppleCacheFactory.class);
-
-	private Map<String, Cache> cacheUrlMap = new HashMap<String, Cache>();
-
-	public Cache getCache(URL url) {
-		if(logger.isDebugEnabled()) {
-			logger.debug("dubbo url = " + url.toString());
-		}
-		String cacheKey = getCacheKey(url);
-		if (!cacheUrlMap.containsKey(cacheKey)) {
-			try {
-				cacheUrlMap.put(cacheKey, new AppleCache(url, cacheKey));
-			} catch (Exception e) {
-				logger.error("缓存初始化失败! url=" + url, e);
-			}
-		}
-		return cacheUrlMap.get(cacheKey);
+	@Override
+	protected Cache createCache(URL url) {
+		return new AppleCache(url);
 	}
 
-	public static String getCacheKey(URL url) {
-		String cacheKey = null;
-		String methodName = url.getParameter("method");
-		if (url.hasParameter(methodName + "." + Constants.PARAMTYPES)) {
-			String paramTypesStr = url.getParameter(DubboUtil.getMethodParamKey(url, Constants.PARAMTYPES));
-			cacheKey = url.getPath() + "." + methodName + "." + MD5Util.string2MD5(paramTypesStr);
-		} else {
-			cacheKey = url.getPath() + "." + methodName;
-		}
-		return cacheKey;
-	}
+	
 }
