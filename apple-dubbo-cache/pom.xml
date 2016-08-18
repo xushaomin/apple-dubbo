@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.appleframework.dubbo</groupId>
 		<artifactId>apple-dubbo</artifactId>
-		<version>0.0.2.RELEASE</version>
+		<version>0.0.3.RELEASE</version>
 	</parent>
 	<artifactId>apple-dubbo-cache</artifactId>
 	<name>apple-dubbo-cache</name>

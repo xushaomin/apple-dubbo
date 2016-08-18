@@ -43,5 +43,19 @@ public class SpringUtility implements ApplicationContextAware, DisposableBean {
 	public static Object getBean(String name) throws BeansException {
 		return applicationContext.getBean(name);
 	}
+	
+	/**
+	 * 根据Bean名称获取实例
+	 * 
+	 * @param requiredType
+	 *            Bean注册类
+	 * 
+	 * @return bean实例
+	 * 
+	 * @throws BeansException
+	 */
+	public static <T> T getBean(Class<T> requiredType) throws BeansException {
+		return applicationContext.getBean(requiredType);
+	}
 
 }

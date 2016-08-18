@@ -4,7 +4,7 @@
 
 	<groupId>com.appleframework.dubbo</groupId>
 	<artifactId>apple-dubbo</artifactId>
-	<version>0.0.2.RELEASE</version>
+	<version>0.0.3.RELEASE</version>
 	<packaging>pom</packaging>
 
 	<name>apple-dubbo</name>
@@ -27,7 +27,7 @@
 	<properties>
 		<java.version>1.7</java.version>
 		<file.encoding>UTF-8</file.encoding>
-		<dubbo.version>2.5.3</dubbo.version>
+		<dubbo.version>2.5.4.APPLE</dubbo.version>
 		<log4j.version>1.2.17</log4j.version>
 		<cache.version>0.2.1.RELEASE</cache.version>
 		<spring.version>4.2.0.RELEASE</spring.version>
