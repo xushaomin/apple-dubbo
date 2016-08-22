@@ -39,7 +39,11 @@ public class AppleCache implements Cache {
 			logger.debug("The Bean id=DubboCacheManager is not exist !");
 		}
 		if(null == cacheManager) {
-			dubboCacheManager = SpringUtility.getApplicationContext().getBean(CacheManager.class);
+			try {
+				dubboCacheManager = SpringUtility.getApplicationContext().getBean(CacheManager.class);
+			} catch (Exception e) {
+				logger.debug("The Bean class=CacheManager is not exist !");
+			}
 		}
 		else {
 			dubboCacheManager = (CacheManager)cacheManager;
@@ -48,7 +52,7 @@ public class AppleCache implements Cache {
 
 	public void put(Object param, Object value) {
 		boolean cacheEnable = PropertyConfigurer.getBoolean(Constants.KEY_DUBBO_CACHE_ENABLE, true);
-		if (cacheEnable) {
+		if (cacheEnable && null != dubboCacheManager) {
 			try {
 				String key = getCacheKey(param);
 				if(logger.isDebugEnabled()) {
@@ -67,7 +71,7 @@ public class AppleCache implements Cache {
 
 	public Object get(Object param) {
 		boolean cacheEnable = PropertyConfigurer.getBoolean(Constants.KEY_DUBBO_CACHE_ENABLE, true);
-		if (cacheEnable) {
+		if (cacheEnable && null != dubboCacheManager) {
 			try {
 				String key = getCacheKey(param);
 				if(logger.isDebugEnabled()) {
