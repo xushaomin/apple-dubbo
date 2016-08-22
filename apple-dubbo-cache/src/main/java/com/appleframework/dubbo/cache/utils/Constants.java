@@ -3,12 +3,12 @@ package com.appleframework.dubbo.cache.utils;
 /**
  */
 public class Constants {
+	
+    public static final String KEY_DUBBO_CACHE_ENABLE = "dubbo.cache.enable";
+    public static final String KEY_CACHE_MANAGER_NAME = "dubboCacheManager";
 
-    public static final String EXPIRE_TIME = "expireTime";
-    public static final String PROPKEY = "propKey";
-    public static final String KEY = "key";
-    public static final String PARAMTYPES = "paramTypes";
-    
-    public static final boolean CACHE_ENABLE = true;
+    public static final String KEY_EXPIRE_TIME = "expireTime";
+    public static final String KEY_PARAMTYPES = "paramTypes";
+
 
 }

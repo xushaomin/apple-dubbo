@@ -4,7 +4,7 @@
 
 	<groupId>com.appleframework.dubbo</groupId>
 	<artifactId>apple-dubbo</artifactId>
-	<version>0.0.5.RELEASE</version>
+	<version>0.0.6.RELEASE</version>
 	<packaging>pom</packaging>
 
 	<name>apple-dubbo</name>
@@ -30,6 +30,7 @@
 		<dubbo.version>2.5.4.APPLE</dubbo.version>
 		<log4j.version>1.2.17</log4j.version>
 		<cache.version>0.2.1.RELEASE</cache.version>
+		<config.version>0.2.1.RELEASE</config.version>
 		<spring.version>4.2.0.RELEASE</spring.version>
 	</properties>
 
@@ -51,6 +52,13 @@
 				<groupId>com.appleframework.cache</groupId>
 				<artifactId>apple-cache-core</artifactId>
 				<version>${cache.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.appleframework.config</groupId>
+				<artifactId>apple-config-core</artifactId>
+				<version>${config.version}</version>
 				<scope>provided</scope>
 			</dependency>
 			

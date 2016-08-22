@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import com.alibaba.dubbo.cache.Cache;
 import com.alibaba.dubbo.common.URL;
 import com.appleframework.cache.core.CacheManager;
+import com.appleframework.config.core.PropertyConfigurer;
 import com.appleframework.core.utils.SpringUtility;
 import com.appleframework.dubbo.cache.utils.Constants;
 import com.appleframework.dubbo.cache.utils.DubboUtil;
@@ -19,8 +20,6 @@ public class AppleCache implements Cache {
 	
 	private static final Logger logger = Logger.getLogger(AppleCache.class);
 	
-	private static String CACHE_MANAGER_ID = "dubboCacheManager";
-
 	private String baseCacheKey;
 
 	private int expireTime = -1;
@@ -29,18 +28,27 @@ public class AppleCache implements Cache {
 
 	public AppleCache(URL url) {
 		this.baseCacheKey = getBaseCacheKey(url);
-		this.expireTime = url.getParameter(DubboUtil.getMethodParamKey(url, Constants.EXPIRE_TIME), -1);
+		this.expireTime = url.getParameter(DubboUtil.getMethodParamKey(url, Constants.KEY_EXPIRE_TIME), -1);
 		if (expireTime == -1) {
-			this.expireTime = url.getParameter(Constants.EXPIRE_TIME, -1);
+			this.expireTime = url.getParameter(Constants.KEY_EXPIRE_TIME, -1);
 		}
-		dubboCacheManager = (CacheManager)SpringUtility.getApplicationContext().getBean(CACHE_MANAGER_ID);
-		if(null == dubboCacheManager) {
+		Object cacheManager = null;
+		try {
+			cacheManager = SpringUtility.getApplicationContext().getBean(Constants.KEY_CACHE_MANAGER_NAME);
+		} catch (Exception e) {
+			logger.debug("The Bean id=DubboCacheManager is not exist !");
+		}
+		if(null == cacheManager) {
 			dubboCacheManager = SpringUtility.getApplicationContext().getBean(CacheManager.class);
+		}
+		else {
+			dubboCacheManager = (CacheManager)cacheManager;
 		}
 	}
 
 	public void put(Object param, Object value) {
-		if (Constants.CACHE_ENABLE) {
+		boolean cacheEnable = PropertyConfigurer.getBoolean(Constants.KEY_DUBBO_CACHE_ENABLE, true);
+		if (cacheEnable) {
 			try {
 				String key = getCacheKey(param);
 				if(logger.isDebugEnabled()) {
@@ -58,7 +66,8 @@ public class AppleCache implements Cache {
 	}
 
 	public Object get(Object param) {
-		if (Constants.CACHE_ENABLE) {
+		boolean cacheEnable = PropertyConfigurer.getBoolean(Constants.KEY_DUBBO_CACHE_ENABLE, true);
+		if (cacheEnable) {
 			try {
 				String key = getCacheKey(param);
 				if(logger.isDebugEnabled()) {
@@ -86,11 +95,12 @@ public class AppleCache implements Cache {
 	
 	public String getBaseCacheKey(URL url) {
 		String cacheKey = null;
-		if (url.hasParameter(url.getParameter("method") + "." + "paramTypes")) {
+		String method = url.getParameter("method");
+		if (url.hasParameter(method + "." + "paramTypes")) {
 			String paramTypesStr = url.getParameter(DubboUtil.getMethodParamKey(url, "paramTypes"));
-			cacheKey = url.getPath() + "." + url.getParameter("method") + "." + MD5Util.string2MD5(paramTypesStr);
+			cacheKey = url.getPath() + "." + method + "." + MD5Util.string2MD5(paramTypesStr);
 		} else {
-			cacheKey = url.getPath() + "." + url.getParameter("method");
+			cacheKey = url.getPath() + "." + method;
 		}
 		return cacheKey;
 	}
