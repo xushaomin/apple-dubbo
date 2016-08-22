@@ -16,8 +16,10 @@ import com.appleframework.dubbo.cache.utils.MD5Util;
  * @author xusm.cruise
  */
 public class AppleCache implements Cache {
-
+	
 	private static final Logger logger = Logger.getLogger(AppleCache.class);
+	
+	private static String CACHE_MANAGER_ID = "dubboCacheManager";
 
 	private String baseCacheKey;
 
@@ -31,7 +33,10 @@ public class AppleCache implements Cache {
 		if (timeout == -1) {
 			this.timeout = url.getParameter(Constants.TIMEOUT, -1);
 		}
-		dubboCacheManager = SpringUtility.getApplicationContext().getBean(CacheManager.class);
+		dubboCacheManager = (CacheManager)SpringUtility.getApplicationContext().getBean(CACHE_MANAGER_ID);
+		if(null == dubboCacheManager) {
+			dubboCacheManager = SpringUtility.getApplicationContext().getBean(CacheManager.class);
+		}
 	}
 
 	public void put(Object param, Object value) {
