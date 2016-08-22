@@ -23,15 +23,15 @@ public class AppleCache implements Cache {
 
 	private String baseCacheKey;
 
-	private int timeout = -1;
+	private int expireTime = -1;
 
 	private CacheManager dubboCacheManager;
 
 	public AppleCache(URL url) {
 		this.baseCacheKey = getBaseCacheKey(url);
-		this.timeout = url.getParameter(DubboUtil.getMethodParamKey(url, Constants.TIMEOUT), -1);
-		if (timeout == -1) {
-			this.timeout = url.getParameter(Constants.TIMEOUT, -1);
+		this.expireTime = url.getParameter(DubboUtil.getMethodParamKey(url, Constants.EXPIRE_TIME), -1);
+		if (expireTime == -1) {
+			this.expireTime = url.getParameter(Constants.EXPIRE_TIME, -1);
 		}
 		dubboCacheManager = (CacheManager)SpringUtility.getApplicationContext().getBean(CACHE_MANAGER_ID);
 		if(null == dubboCacheManager) {
@@ -46,10 +46,10 @@ public class AppleCache implements Cache {
 				if(logger.isDebugEnabled()) {
 					logger.debug("dubbo set cache key = " + key);
 				}
-				if (timeout == -1) {
+				if (expireTime == -1) {
 					getDubboCacheManager().set(key, value);
 				} else {
-					getDubboCacheManager().set(key, value, timeout);
+					getDubboCacheManager().set(key, value, expireTime);
 				}
 			} catch (Exception e) {
 				logger.error(e);
