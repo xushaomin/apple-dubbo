@@ -8,11 +8,11 @@
 		<artifactId>apple-dubbo</artifactId>
 		<version>0.0.7.RELEASE</version>
 	</parent>
-	<artifactId>apple-dubbo-rpc-jms</artifactId>
-	<name>apple-dubbo-rpc-jms</name>
+	<artifactId>apple-dubbo-rpc-kafka</artifactId>
+	<name>apple-dubbo-rpc-kafka</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<kafka.version>0.8.2.2</kafka.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -20,17 +20,14 @@
 			<artifactId>dubbo</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-jms_1.1_spec</artifactId>
-			<version>1.1.1</version>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka_2.11</artifactId>
+			<version>${kafka.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
-		
 	</dependencies>
-
 </project>
