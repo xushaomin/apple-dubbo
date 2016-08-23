@@ -1,0 +1,1 @@
+jms=com.appleframework.dubbo.rpc.protocol.jms.JmsProtocol
