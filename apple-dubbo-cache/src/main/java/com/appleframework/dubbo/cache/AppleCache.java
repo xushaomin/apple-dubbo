@@ -59,9 +59,9 @@ public class AppleCache implements Cache {
 					logger.debug("dubbo set cache key = " + key);
 				}
 				if (expireTime == -1) {
-					getDubboCacheManager().set(key, value);
+					dubboCacheManager.set(key, value);
 				} else {
-					getDubboCacheManager().set(key, value, expireTime);
+					dubboCacheManager.set(key, value, expireTime);
 				}
 			} catch (Exception e) {
 				logger.error(e);
@@ -77,7 +77,7 @@ public class AppleCache implements Cache {
 				if(logger.isDebugEnabled()) {
 					logger.debug("dubbo get cache key = " + key);
 				}
-				return getDubboCacheManager().get(key);
+				return dubboCacheManager.get(key);
 			} catch (Exception e) {
 				logger.error(e);
 			}
@@ -89,14 +89,6 @@ public class AppleCache implements Cache {
 		return baseCacheKey + "_" + param.toString();
 	}
 
-	public CacheManager getDubboCacheManager() {
-		return dubboCacheManager;
-	}
-
-	public void setDubboCacheManager(CacheManager dubboCacheManager) {
-		this.dubboCacheManager = dubboCacheManager;
-	}
-	
 	public String getBaseCacheKey(URL url) {
 		String cacheKey = null;
 		String method = url.getParameter("method");
