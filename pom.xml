@@ -4,7 +4,7 @@
 
 	<groupId>com.appleframework.dubbo</groupId>
 	<artifactId>apple-dubbo</artifactId>
-	<version>0.0.7.RELEASE</version>
+	<version>0.0.8.RELEASE</version>
 	<packaging>pom</packaging>
 
 	<name>apple-dubbo</name>
@@ -29,8 +29,8 @@
 		<file.encoding>UTF-8</file.encoding>
 		<dubbo.version>2.5.4.APPLE</dubbo.version>
 		<log4j.version>1.2.17</log4j.version>
-		<cache.version>0.2.1.RELEASE</cache.version>
-		<config.version>0.2.1.RELEASE</config.version>
+		<cache.version>0.3.1.RELEASE</cache.version>
+		<config.version>0.2.2.RELEASE</config.version>
 		<spring.version>4.2.0.RELEASE</spring.version>
 	</properties>
 
@@ -76,6 +76,8 @@
 		<module>apple-dubbo-cache</module>
     	<module>apple-dubbo-rpc-jms</module>
     <module>apple-dubbo-rpc-kafka</module>
+    <module>apple-dubbo-rpc-akka</module>
+    <module>apple-dubbo-core</module>
   </modules>
 	
 	<build>
