@@ -9,11 +9,11 @@ import com.alibaba.dubbo.common.URL;
  * 
  * @author xusm.cruise
  */
-public class AppleBaseCache extends AppleCache {
+public class AppleCacheOrdinary extends AppleCache {
 	
-	private static final Logger logger = Logger.getLogger(AppleBaseCache.class);
+	private static final Logger logger = Logger.getLogger(AppleCacheOrdinary.class);
 	
-	public AppleBaseCache(URL url) {
+	public AppleCacheOrdinary(URL url) {
 		super(url);
 	}
 

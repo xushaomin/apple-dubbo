@@ -3,7 +3,7 @@ package com.appleframework.dubbo.cache;
 import com.alibaba.dubbo.cache.Cache;
 import com.alibaba.dubbo.cache.support.AbstractCacheFactory;
 import com.alibaba.dubbo.common.URL;
-import com.appleframework.dubbo.cache.config.CacheConfig;
+import com.appleframework.dubbo.cache.config.DubboCacheConfig;
 
 /**
  *  * AppleCacheFactory
@@ -14,13 +14,13 @@ public class AppleCacheFactory extends AbstractCacheFactory {
 
 	@Override
 	protected Cache createCache(URL url) {
-		boolean cacheEnable = CacheConfig.isCacheEnable();
+		boolean cacheEnable = DubboCacheConfig.isCacheEnable();
 		if (cacheEnable) {
-			boolean cacheObject = CacheConfig.isCacheObject();
+			boolean cacheObject = DubboCacheConfig.isCacheObject();
 			if (cacheObject) {
-				return new AppleObjectCache(url);
+				return new AppleCacheObject(url);
 			} else {
-				return new AppleBaseCache(url);
+				return new AppleCacheOrdinary(url);
 			}
 		} else {
 			return null;

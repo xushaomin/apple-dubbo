@@ -5,18 +5,17 @@ import org.apache.log4j.Logger;
 import com.alibaba.dubbo.common.URL;
 import com.appleframework.cache.core.CacheObject;
 import com.appleframework.cache.core.CacheObjectImpl;
-import com.appleframework.dubbo.cache.config.CacheConfig;
 
 /**
  *  * AppleCache
  * 
  * @author xusm.cruise
  */
-public class AppleObjectCache extends AppleCache {
+public class AppleCacheObject extends AppleCache {
 	
-	private static final Logger logger = Logger.getLogger(AppleObjectCache.class);
+	private static final Logger logger = Logger.getLogger(AppleCacheObject.class);
 	
-	public AppleObjectCache(URL url) {
+	public AppleCacheObject(URL url) {
 		super(url);
 	}
 
@@ -29,8 +28,7 @@ public class AppleObjectCache extends AppleCache {
 	}
 	
 	public void put(Object param, Object value) {
-		boolean cacheEnable = CacheConfig.isCacheEnable();
-		if (cacheEnable && null != dubboCacheManager) {
+		if (null != dubboCacheManager) {
 			try {
 				String key = getCacheKey(param);
 				if(logger.isDebugEnabled()) {
