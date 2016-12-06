@@ -3,7 +3,7 @@ package com.appleframework.dubbo.cache.config;
 
 public class DubboCacheConfig {
 	
-	private static boolean isCacheObject = false;
+	private static boolean isCacheObject = true;
 
 	private static boolean isCacheEnable = true;
 	
