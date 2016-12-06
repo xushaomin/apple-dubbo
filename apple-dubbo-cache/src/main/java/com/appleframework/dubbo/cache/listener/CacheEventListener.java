@@ -18,7 +18,7 @@ public class CacheEventListener implements ConfigListener {
 			DubboCacheConfig.setCacheEnable(Boolean.valueOf(cacheEnable.toString()));
 		}
 		Object cacheObject = props.get(KEY_CACHE_OBJECT);
-		if (null != cacheEnable) {
+		if (null != cacheObject) {
 			DubboCacheConfig.setCacheObject(Boolean.valueOf(cacheObject.toString()));
 		}
 	}
