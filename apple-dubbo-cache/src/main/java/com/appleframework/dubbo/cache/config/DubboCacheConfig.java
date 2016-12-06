@@ -22,5 +22,13 @@ public class DubboCacheConfig {
 	public static void setCacheObject(boolean isCacheObject) {
 		DubboCacheConfig.isCacheObject = isCacheObject;
 	}
+	
+	public void setDubboCacheEnable(boolean isCacheEnable) {
+		DubboCacheConfig.isCacheEnable = isCacheEnable;
+	}
+
+	public void setDubboCacheObject(boolean isCacheObject) {
+		DubboCacheConfig.isCacheObject = isCacheObject;
+	}
 
 }

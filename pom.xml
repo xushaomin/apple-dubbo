@@ -4,7 +4,7 @@
 
 	<groupId>com.appleframework.dubbo</groupId>
 	<artifactId>apple-dubbo</artifactId>
-	<version>0.0.8.RELEASE</version>
+	<version>0.0.9.RELEASE</version>
 	<packaging>pom</packaging>
 
 	<name>apple-dubbo</name>
