@@ -74,11 +74,7 @@
 
 	<modules>
 		<module>apple-dubbo-cache</module>
-    	<module>apple-dubbo-rpc-jms</module>
-    <module>apple-dubbo-rpc-kafka</module>
-    <module>apple-dubbo-rpc-akka</module>
-    <module>apple-dubbo-core</module>
-  </modules>
+	</modules>
 	
 	<build>
 		<plugins>
@@ -186,11 +182,11 @@
 			-->
 			<distributionManagement>
 				<repository>
-					<id>apple-releases</id>
+					<id>nexus-releases</id>
 					<url>http://mvnrepo.appleframework.com:8081/nexus/content/repositories/releases/</url>
 				</repository>
 				<snapshotRepository>
-					<id>apple-snapshots</id>
+					<id>nexus-snapshots</id>
 					<url>http://mvnrepo.appleframework.com:8081/nexus/content/repositories/snapshots/</url>
 				</snapshotRepository>
 			</distributionManagement>
