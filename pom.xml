@@ -74,7 +74,8 @@
 
 	<modules>
 		<module>apple-dubbo-cache</module>
-	</modules>
+    <module>apple-dubbo-config</module>
+  </modules>
 	
 	<build>
 		<plugins>

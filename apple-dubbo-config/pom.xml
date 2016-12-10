@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.appleframework.dubbo</groupId>
+		<artifactId>apple-dubbo</artifactId>
+		<version>0.0.9.RELEASE</version>
+	</parent>
+	<artifactId>apple-dubbo-config</artifactId>
+	<name>apple-dubbo-config</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<config.version>0.2.2.RELEASE</config.version>
+	</properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.appleframework.dubbo</groupId>
+			<artifactId>apple-dubbo-cache</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.appleframework.config</groupId>
+			<artifactId>apple-config-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>
