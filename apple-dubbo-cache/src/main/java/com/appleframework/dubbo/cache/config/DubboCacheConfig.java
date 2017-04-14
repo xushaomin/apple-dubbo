@@ -5,7 +5,7 @@ public class DubboCacheConfig {
 	
 	private static boolean isCacheObject = true;
 
-	private static boolean isCacheEnable = true;
+	private static boolean isCacheEnable = false;
 	
 	public static boolean isCacheEnable() {
 		return isCacheEnable;

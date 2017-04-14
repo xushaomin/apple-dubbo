@@ -11,6 +11,8 @@ import com.appleframework.dubbo.cache.config.DubboCacheConfig;
  * @author xusm.cruise
  */
 public class AppleCacheFactory extends AbstractCacheFactory {
+	
+	private static NoCache noCache = new NoCache();
 
 	@Override
 	protected Cache createCache(URL url) {
@@ -23,7 +25,7 @@ public class AppleCacheFactory extends AbstractCacheFactory {
 				return new AppleCacheOrdinary(url);
 			}
 		} else {
-			return null;
+			return noCache;
 		}
 	}
 	
